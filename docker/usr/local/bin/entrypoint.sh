@@ -10,6 +10,7 @@ set -o errexit
 main() {
   show_motd
   prepare_conf
+  prepare_symlinks
   run_nginx "$@"
 }
 
