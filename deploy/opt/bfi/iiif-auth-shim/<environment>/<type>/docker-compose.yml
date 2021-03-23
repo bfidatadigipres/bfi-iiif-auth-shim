@@ -20,4 +20,4 @@ services:
 
 secrets:
   bfi_iiif_root_ca_crt:
-    file: /etc/opt/bfi/iiif-load-balancer/ssl/bfi-iiif-root-ca.crt
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bfi-iiif-root-ca.crt
