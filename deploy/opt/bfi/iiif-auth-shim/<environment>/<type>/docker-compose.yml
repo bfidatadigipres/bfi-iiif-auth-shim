@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  shim:
+    image: ghcr.io/bfidatadigipres/bfi-iiif-auth-shim:${AUTH_SHIM_IMAGE_TAG}
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+      - ENDPOINT_SCHEME=${ENDPOINT_SCHEME}
+      - ENDPOINT_HOSTNAME=${ENDPOINT_HOSTNAME}
+      - ENDPOINT_PORT=${ENDPOINT_PORT}
+      - LOGGING_SCHEME=${LOGGING_SCHEME}
+      - LOGGING_HOSTNAME=${LOGGING_HOSTNAME}
+      - LOGGING_PORT=${LOGGING_PORT}
+      - API_REQUEST_TYPE=${API_REQUEST_TYPE}
+    ports:
+      - ${AUTH_SHIM_PORT}:80
+    secrets:
+      - source: bfi_iiif_root_ca_crt
+        target: ssl/bfi-iiif-root-ca.crt
+
+secrets:
+  bfi_iiif_root_ca_crt:
+    file: /etc/opt/bfi/iiif-load-balancer/ssl/bfi-iiif-root-ca.crt

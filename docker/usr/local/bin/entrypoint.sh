@@ -29,6 +29,12 @@ prepare_conf() {
   render_template "/etc/nginx/conf.d/auth-shim.conf" "\${SERVER_NAME} \${ENDPOINT_SCHEME} \${ENDPOINT_HOSTNAME} \${ENDPOINT_PORT} \${LOGGING_SCHEME} \${LOGGING_HOSTNAME} \${LOGGING_PORT} \${API_REQUEST_TYPE}"
 }
 
+prepare_symlinks() {
+  # /etc/nginx/ssl/bfi-iiif-root-ca.crt
+  mkdir -p "/etc/nginx/ssl"
+  ln -sfv "/run/secrets/ssl/bfi-iiif-root-ca.crt" "/etc/nginx/ssl"
+}
+
 render_template() {
   local target=${1}
   local vars=${2}
