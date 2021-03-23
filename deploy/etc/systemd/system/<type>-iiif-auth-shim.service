@@ -1,0 +1,14 @@
+# /etc/systemd/system/<type>-iiif-auth-shim.service
+[Unit]
+Description=IIIF Authentication Shim - <type>
+After=docker.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+WorkingDirectory=/opt/bfi/iiif-auth-shim
+ExecStart=/usr/local/bin/docker-compose --file /opt/bfi/iiif-auth-shim/<type>/docker-compose.yml --env-file /etc/opt/bfi/iiif-auth-shim/<type>/config.env up --remove-orphans --abort-on-container-exit --no-color
+ExecStop=/usr/local/bin/docker-compose --file /opt/bfi/iiif-auth-shim/<type>/docker-compose.yml --env-file /etc/opt/bfi/iiif-auth-shim/<type>/config.env down
+
+[Install]
+WantedBy=multi-user.target
