@@ -27,7 +27,7 @@ show_motd() {
 }
 
 prepare_conf() {
-  render_template "/etc/nginx/conf.d/auth-shim.conf" "\${SERVER_NAME} \${ENDPOINT_SCHEME} \${ENDPOINT_HOSTNAME} \${ENDPOINT_PORT} \${LOGGING_SCHEME} \${LOGGING_HOSTNAME} \${LOGGING_PORT} \${API_REQUEST_TYPE}"
+  render_template "/etc/nginx/conf.d/auth-shim.conf" "\${SERVER_NAME} \${VIEWER_SCHEME} \${VIEWER_HOSTNAME} \${ENDPOINT_SCHEME} \${ENDPOINT_HOSTNAME} \${ENDPOINT_PORT} \${LOGGING_SCHEME} \${LOGGING_HOSTNAME} \${LOGGING_PORT} \${API_REQUEST_TYPE}"
 }
 
 prepare_symlinks() {
