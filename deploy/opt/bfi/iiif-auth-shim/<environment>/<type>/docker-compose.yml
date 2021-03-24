@@ -5,6 +5,8 @@ services:
     image: ghcr.io/bfidatadigipres/bfi-iiif-auth-shim:${AUTH_SHIM_IMAGE_TAG}
     environment:
       - SERVER_NAME=${SERVER_NAME}
+      - VIEWER_SCHEME=${VIEWER_SCHEME}
+      - VIEWER_HOSTNAME=${VIEWER_HOSTNAME}
       - ENDPOINT_SCHEME=${ENDPOINT_SCHEME}
       - ENDPOINT_HOSTNAME=${ENDPOINT_HOSTNAME}
       - ENDPOINT_PORT=${ENDPOINT_PORT}
