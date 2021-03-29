@@ -23,6 +23,8 @@ services:
         target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
       - source: bk-ci-data4_dpi_bfi_org_uk_key
         target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+      - source: dhparam_pem
+        target: ssl/dhparam.pem
 
 secrets:
   bfi_iiif_root_ca_crt:
@@ -31,3 +33,5 @@ secrets:
     file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.crt
   bk-ci-data4_dpi_bfi_org_uk_key:
     file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.key
+  dhparam_pem:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/dhparam.pem
