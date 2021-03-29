@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  shim_manifest:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - SERVER_NAME=localhost
+      - VIEWER_SCHEME=http
+      - VIEWER_HOSTNAME=localhost
+      - ENDPOINT_SCHEME=https
+      - ENDPOINT_HOSTNAME=bfinationalarchivemanifest.bfi.org.uk
+      - ENDPOINT_PORT=443
+      - LOGGING_SCHEME=http
+      - LOGGING_HOSTNAME=172.17.0.1
+      - LOGGING_PORT=8080
+      - API_REQUEST_TYPE=manifest
+    ports:
+      - 10443:443
+    secrets:
+      - source: bfi_iiif_root_ca_crt
+        target: ssl/bfi-iiif-root-ca.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_crt
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_key
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+  shim_image:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - SERVER_NAME=localhost
+      - VIEWER_SCHEME=http
+      - VIEWER_HOSTNAME=localhost
+      - ENDPOINT_SCHEME=https
+      - ENDPOINT_HOSTNAME=bfinationalarchiveimage.bfi.org.uk
+      - ENDPOINT_PORT=443
+      - LOGGING_SCHEME=http
+      - LOGGING_HOSTNAME=172.17.0.1
+      - LOGGING_PORT=8080
+      - API_REQUEST_TYPE=manifest
+    ports:
+      - 11443:443
+    secrets:
+      - source: bfi_iiif_root_ca_crt
+        target: ssl/bfi-iiif-root-ca.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_crt
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_key
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+
+secrets:
+  bfi_iiif_root_ca_crt:
+    file: ssl/bfi-iiif-root-ca.crt
+  bk-ci-data4_dpi_bfi_org_uk_crt:
+    file: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+  bk-ci-data4_dpi_bfi_org_uk_key:
+    file: ssl/bk-ci-data4.dpi.bfi.org.uk.key
