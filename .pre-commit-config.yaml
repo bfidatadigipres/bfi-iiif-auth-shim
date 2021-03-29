@@ -6,7 +6,12 @@ repos:
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: check-symlinks
-        exclude: deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bfi-iiif-root-ca.crt
+        exclude: |
+          (?x)(
+            ^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bfi-iiif-root-ca.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.key$
+          )
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace

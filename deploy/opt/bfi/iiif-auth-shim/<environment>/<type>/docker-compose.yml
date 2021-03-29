@@ -15,11 +15,19 @@ services:
       - LOGGING_PORT=${LOGGING_PORT}
       - API_REQUEST_TYPE=${API_REQUEST_TYPE}
     ports:
-      - ${AUTH_SHIM_PORT}:80
+      - ${AUTH_SHIM_PORT}:443
     secrets:
       - source: bfi_iiif_root_ca_crt
         target: ssl/bfi-iiif-root-ca.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_crt
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_key
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
 
 secrets:
   bfi_iiif_root_ca_crt:
     file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bfi-iiif-root-ca.crt
+  bk-ci-data4_dpi_bfi_org_uk_crt:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+  bk-ci-data4_dpi_bfi_org_uk_key:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.key

@@ -31,9 +31,16 @@ prepare_conf() {
 }
 
 prepare_symlinks() {
-  # /etc/nginx/ssl/bfi-iiif-root-ca.crt
   mkdir -p "/etc/nginx/ssl"
+
+  # /etc/nginx/ssl/bfi-iiif-root-ca.crt
   ln -sfv "/run/secrets/ssl/bfi-iiif-root-ca.crt" "/etc/nginx/ssl"
+
+  # /etc/nginx/ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+  ln -sfv "/run/secrets/ssl/bk-ci-data4.dpi.bfi.org.uk.crt" "/etc/nginx/ssl"
+
+  # /etc/nginx/ssl/bk-ci-data4.dpi.bfi.org.uk.key
+  ln -sfv "/run/secrets/ssl/bk-ci-data4.dpi.bfi.org.uk.key" "/etc/nginx/ssl"
 }
 
 render_template() {
