@@ -41,6 +41,9 @@ prepare_symlinks() {
 
   # /etc/nginx/ssl/bk-ci-data4.dpi.bfi.org.uk.key
   ln -sfv "/run/secrets/ssl/bk-ci-data4.dpi.bfi.org.uk.key" "/etc/nginx/ssl"
+
+  # /etc/nginx/ssl/dhparam.pem
+  ln -sfv "/run/secrets/ssl/dhparam.pem" "/etc/nginx/ssl"
 }
 
 render_template() {
