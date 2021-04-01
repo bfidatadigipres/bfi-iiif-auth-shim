@@ -8,10 +8,10 @@ repos:
       - id: check-symlinks
         exclude: |
           (?x)(
-            ^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bfi-iiif-root-ca.crt$
-            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.crt$
-            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.key$
-            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl/dhparam.pem$
+            ^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bfi-iiif-root-ca.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.key$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/dhparam.pem$
           )
       - id: detect-private-key
       - id: end-of-file-fixer
