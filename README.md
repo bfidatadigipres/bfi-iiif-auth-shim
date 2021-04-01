@@ -39,13 +39,13 @@ The repository is split into the following components:
 - [`deploy/`](deploy/)
   - Contains the folder structure and configuration files required to
     deploy the authentication shim. Specifically:
-    - [`/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/`](deploy/etc/opt/bfi/iiif-auth-shim/%3Cenvironment%3E/%3Ctype%3E):
+    - [`/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/`](deploy/etc/opt/bfi/iiif-auth-shim/%3Cenvironment%3E/%3Ctype%3E):
       contains configuration files and assets used by the authentication
       shim.
     - [`/etc/systemd/system/<environment>-<type>-iiif-auth-shim.service`](deploy/etc/systemd/system/<environment>-<type>-iiif-auth-shim.service):
       the systemd unit used for starting and stopping the underlying
       authentication shim.
-    - [`/opt/bfi/iiif-auth-shim/<environment>/<type>/docker-compose.yml`](deploy/opt/bfi/iiif-auth-shim/<environment>/<type>/docker-compose.yml):
+    - [`/opt/bfi/iiif-auth-shim/<environment>_<type>/docker-compose.yml`](deploy/opt/bfi/iiif-auth-shim/%3Cenvironment%3E_%3Ctype%3E/docker-compose.yml):
       the Docker Compose manifest, defining the authentication shim
       application, dependencies and relationships therein.
 
@@ -139,21 +139,21 @@ the `config.env` configuration file.
 
 ```bash
 sudo -i
-mkdir -p /etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl
-mkdir -p /opt/bfi/iiif-auth-shim/<environment>/<type>
+mkdir -p /etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl
+mkdir -p /opt/bfi/iiif-auth-shim/<environment>_<type>
 ```
 
 Deploy BFI's IIIF root certificate authority, and the SSL certificates:
 
 ```bash
-cp bfi-iiif-root-ca.crt /etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl
-cp bk-ci-data4.dpi.bfi.org.uk.crt /etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl
-cp bk-ci-data4.dpi.bfi.org.uk.key /etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl
-cp dhparam.pem /etc/opt/bfi/iiif-auth-shim/<environment>/<type>/ssl
+cp bfi-iiif-root-ca.crt /etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl
+cp bk-ci-data4.dpi.bfi.org.uk.crt /etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl
+cp bk-ci-data4.dpi.bfi.org.uk.key /etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl
+cp dhparam.pem /etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl
 ```
 
 Update
-[`/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/config.env`](deploy/etc/opt/bfi/iiif-auth-shim/<environment>/<type>/config.env)
+[`/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/config.env`](deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/config.env)
 to set the desired configuration:
 
 ```text
@@ -175,7 +175,7 @@ API_REQUEST_TYPE=<manifest|image>
 Add the Docker Compose manifest:
 
 ```bash
-cp docker-compose.yml /opt/bfi/iiif-auth-shim/<environment>/<type>
+cp docker-compose.yml /opt/bfi/iiif-auth-shim/<environment>_<type>
 ```
 
 Add the systemd unit:
