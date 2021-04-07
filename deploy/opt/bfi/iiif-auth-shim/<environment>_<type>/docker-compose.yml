@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  shim:
+    image: ghcr.io/bfidatadigipres/bfi-iiif-auth-shim:${AUTH_SHIM_IMAGE_TAG}
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+      - VIEWER_SCHEME=${VIEWER_SCHEME}
+      - VIEWER_HOSTNAME=${VIEWER_HOSTNAME}
+      - ENDPOINT_SCHEME=${ENDPOINT_SCHEME}
+      - ENDPOINT_HOSTNAME=${ENDPOINT_HOSTNAME}
+      - ENDPOINT_PORT=${ENDPOINT_PORT}
+      - LOGGING_SCHEME=${LOGGING_SCHEME}
+      - LOGGING_HOSTNAME=${LOGGING_HOSTNAME}
+      - LOGGING_PORT=${LOGGING_PORT}
+      - API_REQUEST_TYPE=${API_REQUEST_TYPE}
+    ports:
+      - ${AUTH_SHIM_PORT}:443
+    secrets:
+      - source: bfi_iiif_root_ca_crt
+        target: ssl/bfi-iiif-root-ca.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_crt
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+      - source: bk-ci-data4_dpi_bfi_org_uk_key
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+      - source: dhparam_pem
+        target: ssl/dhparam.pem
+
+secrets:
+  bfi_iiif_root_ca_crt:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bfi-iiif-root-ca.crt
+  bk-ci-data4_dpi_bfi_org_uk_crt:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+  bk-ci-data4_dpi_bfi_org_uk_key:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/bk-ci-data4.dpi.bfi.org.uk.key
+  dhparam_pem:
+    file: /etc/opt/bfi/iiif-auth-shim/${ENVIRONMENT}/${API_REQUEST_TYPE}/ssl/dhparam.pem

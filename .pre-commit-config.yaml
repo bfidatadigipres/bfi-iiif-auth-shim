@@ -1,0 +1,20 @@
+repos:
+  - repo: 'git://github.com/pre-commit/pre-commit-hooks'
+    rev: v3.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+        exclude: |
+          (?x)(
+            ^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bfi-iiif-root-ca.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.crt$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/bk-ci-data4.dpi.bfi.org.uk.key$
+            |^deploy/etc/opt/bfi/iiif-auth-shim/<environment>_<type>/ssl/dhparam.pem$
+          )
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-json
+      - id: check-yaml
