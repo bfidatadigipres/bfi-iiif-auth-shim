@@ -11,6 +11,8 @@ ssl/bfi-iiif-root-ca.crt
 ssl/bk-ci-data4.dpi.bfi.org.uk.key
 ssl/bk-ci-data4.dpi.bfi.org.uk.crt
 ssl/dhparam.pem
+ssl/bk-ci-data7.dpi.bfi.org.uk.key
+ssl/bk-ci-data7.dpi.bfi.org.uk.crt
 
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains
 # Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains
