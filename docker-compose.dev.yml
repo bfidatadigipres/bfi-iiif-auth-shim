@@ -10,7 +10,7 @@ services:
       - VIEWER_SCHEME=http
       - VIEWER_HOSTNAME=localhost
       - ENDPOINT_SCHEME=https
-      - ENDPOINT_HOSTNAME=
+      - ENDPOINT_HOSTNAME=bfinationalarchivemanifest.bfi.org.uk
       - ENDPOINT_PORT=443
       - LOGGING_SCHEME=http
       - LOGGING_HOSTNAME=172.17.0.1
@@ -36,7 +36,7 @@ services:
       - VIEWER_SCHEME=http
       - VIEWER_HOSTNAME=localhost
       - ENDPOINT_SCHEME=https
-      - ENDPOINT_HOSTNAME=
+      - ENDPOINT_HOSTNAME=bfinationalarchiveimage.bfi.org.uk
       - ENDPOINT_PORT=443
       - LOGGING_SCHEME=http
       - LOGGING_HOSTNAME=172.17.0.1
@@ -53,6 +53,32 @@ services:
         target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
       - source: dhparam_pem
         target: ssl/dhparam.pem
+  shim_video:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - SERVER_NAME=localhost
+      - VIEWER_SCHEME=http
+      - VIEWER_HOSTNAME=localhost
+      - ENDPOINT_SCHEME=https
+      - ENDPOINT_HOSTNAME=bfinationalarchivemedia.dpi.bfi.org.uk
+      - ENDPOINT_PORT=443
+      - LOGGING_SCHEME=http
+      - LOGGING_HOSTNAME=172.17.0.1
+      - LOGGING_PORT=8080
+      - API_REQUEST_TYPE=video
+    ports:
+      - 12443:443
+    secrets:
+      - source: bfi_iiif_root_ca_crt
+        target: ssl/bfi-iiif-root-ca.crt
+      - source: bk-ci-data7_dpi_bfi_org_uk_crt
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
+      - source: bk-ci-data7_dpi_bfi_org_uk_key
+        target: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+      - source: dhparam_pem
+        target: ssl/dhparam.pem
 
 secrets:
   bfi_iiif_root_ca_crt:
@@ -61,5 +87,9 @@ secrets:
     file: ssl/bk-ci-data4.dpi.bfi.org.uk.crt
   bk-ci-data4_dpi_bfi_org_uk_key:
     file: ssl/bk-ci-data4.dpi.bfi.org.uk.key
+  bk-ci-data7_dpi_bfi_org_uk_crt:
+    file: ssl/bk-ci-data7.dpi.bfi.org.uk.crt
+  bk-ci-data7_dpi_bfi_org_uk_key:
+    file: ssl/bk-ci-data7.dpi.bfi.org.uk.key
   dhparam_pem:
     file: ssl/dhparam.pem
