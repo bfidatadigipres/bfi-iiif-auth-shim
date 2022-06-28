@@ -2,6 +2,7 @@
 [Unit]
 Description=IIIF Authentication Shim - <type>
 After=docker.service
+Restart=always
 
 [Service]
 Type=simple
