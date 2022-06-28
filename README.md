@@ -22,6 +22,7 @@ Additionally, the project utilises the
 module, allowing HTTP headers to not only be appended (as per NGINX's
 own `add_header` functionality), but replaced and remove too.
 
+Deployment NOTE: this is deployed in the IIIF server not the Load Balancer server
 
 ## Getting Started
 
